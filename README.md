@@ -55,17 +55,69 @@ Filter by ICMP traffic in Wireshark and ping the created Linux machine (private 
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/Kxygo1h.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Configure Linux machine firewall (network security group) to block inbound ICMP traffic and observe the unsuccessful pings from the Windows machine to the Linux machine. A perpetual ping was initiated from the Windows machine prior to the configuration of the Linux firewall to observe in real-time the change in network traffic. 
+The configuration made to the Linux firewall was creating a new security rule that would block all ICMPv4 traffic and ensure that the rule's priority was evaluated first. 
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/e3l67ur.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Once the new firewall rule has taken effect you can observe the failed ping requests from the Windows VM to the Linux VM.
+</p>
+<br />
+
+<p>
+<img src="https://i.imgur.com/BJ3jvHW.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/hqQ5Ive.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Deleting the ICMP traffic deny rule allows the pings from the Windows VM to the Linux VM to once again become successful.
+</p>
+<br />
+
+<h3>The rest of this lab is observing different types of network traffic, namely SSH, DHCP, DNS, and RDP.</h3>
+
+<h3> SSH </h3>
+<p>
+<img src="https://i.imgur.com/9OTHq2V.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/QunSewP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Filtering by SSH traffic in Wireshark and using SSH to connect to the Linux VM from the Windows VM. Observe the encrypted packets being transmitted securely over the SSH tunnel.
+</p>
+<br />
+
+<h3> DHCP </h3>
+
+<p>
+<img src="https://i.imgur.com/l7y8qKr.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Filtering in Wireshark by DHCP traffic. Using PowerShell to release (ipconfig /release) and renew (ipconfig /renew) the Windows machine private IP address using the command. A short '.bat' file was created with the two commands and then executed in PowerShell. Observe the release, discover, offer, request, and acknowledge packets in Wireshark.
+</p>
+<br />
+
+<h3> DNS </h3>
+
+<p>
+<img src="https://i.imgur.com/GhaVMdJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Filter network traffic by DHCP and use the nslookup command to observe DHCP network traffic.  
+</p>
+<br />
+
+<h3> RDP </h3>
+
+<p>
+<img src="https://i.imgur.com/6A8Fr1w.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Filter network traffic by RDP and observe the constant flow of RDP traffic. This is due to the live RDP connection into the Windows VM.
 </p>
 <br />
